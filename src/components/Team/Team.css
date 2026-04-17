@@ -1,0 +1,18 @@
+.team__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+}
+
+.team .section-title {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .team__content {
+    padding-top: 60px;
+  }
+}

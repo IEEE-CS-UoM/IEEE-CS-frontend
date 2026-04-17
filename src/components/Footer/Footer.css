@@ -1,0 +1,25 @@
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	height: 100svh;
+}
+
+.footer__div {
+	font-size: 70px;
+	letter-spacing: 15px;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.footer__div span {
+	display: inline-block;
+}
+
+@media (max-width: 1024px) {
+	.footer__div {
+		font-size: 30px;
+		letter-spacing: 6px;
+	}
+}
