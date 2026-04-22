@@ -1,12 +1,21 @@
 export const benefitList = [
-  { num: '/01', speed: '-200', text: 'Hands-on technical workshops led by chapter members, alumni, and industry mentors.' },
-  { num: '/02', speed: '-150', text: 'A collaborative community to build projects, prepare for competitions, and share knowledge.' },
-  { num: '/03', speed: '-150', text: 'Leadership pathways through organizing events, mentoring peers, and chapter operations.' },
-  { num: '/04', speed: '-150', text: 'Direct exposure to IEEE standards, publications, and global student opportunities.' },
-  { num: '/05', speed: '-150', text: 'Direct exposure to IEEE standards, publications, and global student opportunities.' },
-  { num: '/06', speed: '-150', text: 'Direct exposure to IEEE standards, publications, and global student opportunities.' },
+  { num: '/01 Technical Excellence', speed: '-80', text: 'We conduct hands-on workshops and sessions on modern technologies such as software development, AI, cybersecurity and emerging computing fields.' },
+  { num: '/02 Industry Engagement', speed: '-80', text: 'We bridge the gap between academia and industry by connecting students with professionals, mentors and leading organizations.' },
+  { num: '/03 Community & Collaboration', speed: '-80', text: 'We cultivate a strong, inclusive tech community where students collaborate, share knowledge and grow together.' },
+  { num: '/04 Leadership & Initiative', speed: '-80', text: 'We provide opportunities for students to lead projects, organize events and build essential leadership and teamwork skills.' },
+  { num: '/05 Innovation & Creativity', speed: '-80', text: ' We encourage innovative thinking through competitions, hackathons and problem-solving challenges.' },
+  { num: '/06 Career Development', speed: '-80', text: 'We help students prepare for their professional journey by enhancing their communication, networking and practical skills.' },
 ];
 
+
+export const teamMembers = [
+  { role: 'Chairman',            name: 'Randeepa Appuhami',      img: '/img/team/1.webp', bg: '#1a2744' },
+  { role: 'Vice Chairman',       name: 'Garuka Satharasinghe',   img: '/img/team/2.webp', bg: '#1a3528' },
+  { role: 'Secretary',           name: 'Sathsarani Amarasinghe', img: '/img/team/3.webp', bg: '#342015' },
+  { role: 'Assistant Secretary', name: 'Pawani Uthpalawanna',    img: '/img/team/4.webp', bg: '#241535' },
+  { role: 'Treasurer',           name: 'Dineth Randula',         img: '/img/team/5.webp', bg: '#332d08' },
+  { role: 'Web Master',          name: 'Akindu Himan',           img: '/img/team/6.webp', bg: '#0d2e2e' },
+];
 
 export const footerLetters = [
   { char: 'I', speed: '-300' },
