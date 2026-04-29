@@ -11,10 +11,10 @@
 
 .benefits__lead {
 	max-width: 860px;
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 1.6;
-	color: #a0a0a0;
-	margin: 30px auto 20px;
+	color: #b8b8b8;
+	margin: 30px auto 40px;
 	text-align: center;
 }
 
@@ -24,7 +24,7 @@
 	justify-content: center;
 	gap: 48px 40px;
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 50px;
 }
 
 .benefits__item {
@@ -36,16 +36,17 @@
 .benefits__num {
 	display: block;
 	font-size: 36px;
-	color: transparent;
-	-webkit-text-stroke: 1px #fff;
+	color: #b0b0b0;
 	margin-bottom: 14px;
 	line-height: 1.1;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
 }
 
 .benefits__p {
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 1.65;
-	color: #6e6e6e;
+	color: #a8a8a8;
 	font-weight: 400;
 }
 
