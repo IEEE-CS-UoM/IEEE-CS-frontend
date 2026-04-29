@@ -1,18 +1,253 @@
 .about__content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   width: 100%;
   padding-top: 100px;
+  padding-bottom: 80px;
 }
 
 .about .section-title {
-  margin-bottom: 0;
+  margin-bottom: 60px;
 }
 
+/* ── Two-column body ───────────────────────────────────────── */
+.about__body {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Left column ───────────────────────────────────────────── */
+.about__left {
+  flex: 0 0 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  position: sticky;
+  top: calc(var(--nav-height) + 32px);
+}
+
+.about__logo {
+  width: 180px;
+  height: auto;
+}
+
+.about__left-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about__name {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--pr-color);
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.about__uni {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--accent-color);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.about__divider {
+  width: 40px;
+  height: 1px;
+  background: var(--accent-color);
+  opacity: 0.5;
+  margin: 6px 0;
+}
+
+.about__stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 4px;
+}
+
+.about__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about__stat-num {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--pr-color);
+  line-height: 1;
+}
+
+.about__stat-plus {
+  font-size: 24px;
+  color: var(--accent-color);
+}
+
+.about__stat-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Right column – Accordion ──────────────────────────────── */
+.about__right {
+  flex: 1;
+  min-width: 0;
+}
+
+.about__accordion {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about__panel {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transition: background 0.25s ease;
+}
+
+.about__panel:hover {
+  background: rgba(253, 162, 5, 0.04);
+}
+
+.about__panel.is-open {
+  background: rgba(253, 162, 5, 0.07);
+}
+
+.about__panel-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 26px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.about__panel-num {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--accent-color);
+  letter-spacing: 0.12em;
+  flex-shrink: 0;
+  min-width: 26px;
+}
+
+.about__panel-title {
+  flex: 1;
+  font-size: 22px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.about__panel-header:hover .about__panel-title,
+.about__panel.is-open .about__panel-title {
+  color: var(--accent-color);
+}
+
+/* Plus / minus icon */
+.about__panel-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.about__panel-icon::before,
+.about__panel-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--pr-color);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.about__panel-icon::before {
+  width: 20px;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.about__panel-icon::after {
+  width: 1px;
+  height: 20px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.about__panel.is-open .about__panel-icon::after {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.about__panel-body {
+  overflow: hidden;
+}
+
+.about__panel-text {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+  padding: 0 48px 28px 16px;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .about__content {
     padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  .about__body {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .about__left {
+    flex: none;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 18px;
+    position: static;
+  }
+
+  .about__logo {
+    width: 80px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .about__name {
+    font-size: 16px;
+  }
+
+  .about__panel-title {
+    font-size: 16px;
+  }
+
+  .about__panel-header {
+    padding: 20px 0;
+  }
+
+  .about__panel-text {
+    font-size: 13px;
+    padding-right: 0;
   }
 }
