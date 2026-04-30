@@ -9,12 +9,6 @@
 	text-transform: uppercase;
 }
 
-.benefits .section-title {
-	font-family: 'Poppins', sans-serif;
-	font-weight: 700;
-	letter-spacing: -1px;
-}
-
 .section-title.align-left {
     text-align: left;
 }

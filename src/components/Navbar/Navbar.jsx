@@ -4,6 +4,7 @@ import './Navbar.css';
 const NAV_ITEMS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
+  { label: 'Events', href: '#events' },
   { label: 'Impact', href: '#benefits' },
   { label: 'Team', href: '#team' },
   { label: 'Footer', href: '#footer' },
@@ -31,6 +32,20 @@ const Navbar = () => {
     setOpen(false);
   };
 
+  const handleEventsClick = (e) => {
+    e.preventDefault();
+    setOpen(false);
+    const st = window.__eventsST;
+    if (st && window.__lenis) {
+      window.__lenis.scrollTo(Math.max(0, st.start - 0));
+    } else if (st) {
+      window.scrollTo({ top: Math.max(0, st.start - 0), behavior: 'smooth' });
+    } else {
+      const el = document.getElementById('events');
+      el?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleFooterClick = (event) => {
     event.preventDefault();
     setOpen(false);
@@ -55,7 +70,11 @@ const Navbar = () => {
           <li key={item.href} className="site-nav__item">
             <a
               href={item.href}
-              onClick={item.href === '#footer' ? handleFooterClick : handleItemClick}
+              onClick={
+                item.href === '#footer' ? handleFooterClick
+                : item.href === '#events' ? handleEventsClick
+                : handleItemClick
+              }
               className="site-nav__link"
             >
               {item.label}

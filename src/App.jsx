@@ -4,6 +4,7 @@ import Hero from './components/Hero/Hero';
 import About from './components/About/About';
 import Impact from './components/Impact/Impact';
 import Team from './components/Team/Team';
+import Event from './components/Event/Event';
 import Footer from './components/Footer/Footer';
 import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
 import Navbar from './components/Navbar/Navbar';
@@ -18,6 +19,7 @@ function App() {
       touchMultiplier: 0.9,
       wheelMultiplier: 0.95,
     });
+    window.__lenis = lenis;
 
     const onTick = (time) => {
       lenis.raf(time * 1000);
@@ -49,6 +51,7 @@ function App() {
       lenis.off('scroll', ScrollTrigger.update);
       gsap.ticker.remove(onTick);
       lenis.destroy();
+      window.__lenis = null;
     };
   }, []);
 
@@ -65,6 +68,7 @@ function App() {
       <Hero />
       <main className="main">
         <About />
+        <Event />
         <Impact />
         <Team />
       </main>

@@ -73,31 +73,6 @@ const About = () => {
         <SectionTitle normalText="about" strokeText=" chapter" />
 
         <div className="about__body">
-          <div className="about__left">
-            <img src="/img/logo.png" alt="IEEE CS UoM logo" className="about__logo" />
-            <div className="about__left-text">
-              <h3 className="about__name">
-                IEEE Computer Society<br />Student Chapter
-              </h3>
-              <p className="about__uni">University of Moratuwa</p>
-              <div className="about__divider" />
-              <div className="about__stats">
-                <div className="about__stat">
-                  <span className="about__stat-num">150<span className="about__stat-plus">+</span></span>
-                  <span className="about__stat-label">Members</span>
-                </div>
-                <div className="about__stat">
-                  <span className="about__stat-num">20<span className="about__stat-plus">+</span></span>
-                  <span className="about__stat-label">Events / Year</span>
-                </div>
-                <div className="about__stat">
-                  <span className="about__stat-num">5<span className="about__stat-plus">+</span></span>
-                  <span className="about__stat-label">Years Active</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div className="about__right">
             <div className="about__accordion" onMouseLeave={() => setOpenIdx(-1)}>
               {PANELS.map((panel, i) => (
@@ -120,6 +95,31 @@ const About = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div className="about__left">
+            <img src="/img/logo.png" alt="IEEE CS UoM logo" className="about__logo" />
+            <div className="about__left-text">
+              <h3 className="about__name">
+                IEEE Computer Society<br />Student Chapter
+              </h3>
+              <p className="about__uni">University of Moratuwa</p>
+              <div className="about__divider" />
+              <div className="about__stats">
+                <div className="about__stat">
+                  <span className="about__stat-num">150<span className="about__stat-plus">+</span></span>
+                  <span className="about__stat-label">Members</span>
+                </div>
+                <div className="about__stat">
+                  <span className="about__stat-num">20<span className="about__stat-plus">+</span></span>
+                  <span className="about__stat-label">Events / Year</span>
+                </div>
+                <div className="about__stat">
+                  <span className="about__stat-num">5<span className="about__stat-plus">+</span></span>
+                  <span className="about__stat-label">Years Active</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

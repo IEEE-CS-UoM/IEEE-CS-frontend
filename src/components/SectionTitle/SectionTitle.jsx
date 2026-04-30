@@ -2,10 +2,11 @@ import { useEffect, useRef } from 'react';
 import { gsap } from '../../lib/gsap';
 import './SectionTitle.css';
 
-const SectionTitle = ({ normalText, strokeText, align = 'center' }) => {
+const SectionTitle = ({ normalText, strokeText, align = 'center', noAnimation = false }) => {
   const squareRef = useRef(null);
 
   useEffect(() => {
+    if (noAnimation) return;
     const ctx = gsap.context(() => {
       if (squareRef.current) {
         gsap.fromTo(squareRef.current, 
@@ -23,7 +24,7 @@ const SectionTitle = ({ normalText, strokeText, align = 'center' }) => {
       }
     });
     return () => ctx.revert();
-  }, []);
+  }, [noAnimation]);
 
   return (
     <h2 className={`section-title ${align === 'left' ? 'align-left' : ''}`}>

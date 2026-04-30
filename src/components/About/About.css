@@ -3,18 +3,18 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: 100px;
+  padding-top: 72px;
   padding-bottom: 80px;
 }
 
 .about .section-title {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 /* ── Two-column body ───────────────────────────────────────── */
 .about__body {
   display: flex;
-  gap: 60px;
+  gap: 80px;
   align-items: flex-start;
   width: 100%;
   justify-content: center;
@@ -22,24 +22,24 @@
 
 /* ── Left column ───────────────────────────────────────────── */
 .about__left {
-  flex: 0 0 520px;
+  flex: 0 0 420px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 28px;
+  gap: 32px;
   position: sticky;
   top: calc(var(--nav-height) + 32px);
 }
 
 .about__logo {
-  width: 180px;
+  width: 200px;
   height: auto;
 }
 
 .about__left-text {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .about__name {
@@ -129,7 +129,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 26px 16px;
+  padding: 30px 20px;
   background: none;
   border: none;
   cursor: pointer;
@@ -211,39 +211,75 @@
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .about__content {
-    padding-top: 60px;
-    padding-bottom: 48px;
+    padding-top: 100px;
+    padding-bottom: 20px;
   }
 
   .about__body {
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .about .section-title {
+    margin-bottom: 56px;
   }
 
   .about__left {
+    order: 1;
     flex: none;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 18px;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
     position: static;
+    text-align: center;
+  }
+
+  .about__right {
+    order: 2;
+    width: 100%;
+    margin-top: 24px;
   }
 
   .about__logo {
-    width: 80px;
+    width: 130px;
     flex-shrink: 0;
-    margin-top: 4px;
+    margin-top: 0;
   }
 
   .about__name {
     font-size: 16px;
+    text-align: center;
+  }
+
+  .about__left-text {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .about__divider {
+    margin: 2px auto;
+  }
+
+  .about__stats {
+    margin-top: 0;
+    justify-content: center;
   }
 
   .about__panel-title {
     font-size: 16px;
   }
 
+  .about__stat-num {
+    font-size: 26px;
+  }
+
+  .about__stat-plus {
+    font-size: 16px;
+  }
+
   .about__panel-header {
-    padding: 20px 0;
+    padding: 12px 0;
   }
 
   .about__panel-text {
