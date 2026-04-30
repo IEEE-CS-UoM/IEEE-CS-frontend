@@ -17,7 +17,9 @@ const Event = () => {
 
   const handleDotClick = (i) => {
     if (!stRef.current) return;
-    const target = stRef.current.start + i * window.innerHeight;
+    const { start, end } = stRef.current;
+    const raw = start + (i / (N - 1)) * (end - start);
+    const target = i === N - 1 ? raw - 2 : raw;
     if (window.__lenis) {
       window.__lenis.scrollTo(target, { duration: 1.2 });
     } else {
