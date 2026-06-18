@@ -3,8 +3,6 @@ export const benefitList = [
   { num: '02 Industry Engagement', speed: '-80', text: 'We bridge the gap between academia and industry by connecting students with professionals, mentors and leading organizations.' },
   { num: '03 Community & Collaboration', speed: '-80', text: 'We cultivate a strong, inclusive tech community where students collaborate, share knowledge and grow together.' },
   { num: '04 Leadership & Initiative', speed: '-80', text: 'We provide opportunities for students to lead projects, organize events and build essential leadership and teamwork skills.' },
-  { num: '05 Innovation & Creativity', speed: '-80', text: ' We encourage innovative thinking through competitions, hackathons and problem-solving challenges.' },
-  { num: '06 Career Development', speed: '-80', text: 'We help students prepare for their professional journey by enhancing their communication, networking and practical skills.' },
 ];
 
 

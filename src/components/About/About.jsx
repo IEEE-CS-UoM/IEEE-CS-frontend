@@ -41,7 +41,8 @@ const About = () => {
         { opacity: 0, y: 28 },
         {
           opacity: 1, y: 0, stagger: 0.18,
-          scrollTrigger: { trigger: '.about__right', start: 'top 82%', end: '+=300', scrub: 1 },
+          duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: '.about__right', start: 'top 82%', once: true },
         }
       );
     }, sectionRef);

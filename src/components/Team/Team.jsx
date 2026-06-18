@@ -14,18 +14,17 @@ const Team = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const cards = cardsRef.current.filter(Boolean);
-      const tl = gsap.timeline({
+
+      gsap.from(cards, {
+        opacity: 0,
+        y: 60,
+        duration: 0.8,
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: gridRef.current,
           start: 'top 80%',
-          end: '+=560',
-          scrub: 1,
-          invalidateOnRefresh: true,
+          once: true,
         },
-      });
-
-      cards.forEach((card, i) => {
-        tl.from(card, { opacity: 0, y: 60, ease: 'none', duration: 1 }, i * 0.6);
       });
 
       gsap.fromTo(descRef.current,
