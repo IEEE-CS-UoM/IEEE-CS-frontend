@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: 72px;
-  padding-bottom: 80px;
+  padding-top: var(--sec-pt);
+  padding-bottom: var(--sec-pb);
 }
 
 .about .section-title {
@@ -211,8 +211,8 @@
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .about__content {
-    padding-top: 100px;
-    padding-bottom: 20px;
+    padding-top: var(--sec-pt);
+    padding-bottom: var(--sec-pb);
   }
 
   .about__body {

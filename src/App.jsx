@@ -7,6 +7,7 @@ import Team from './components/Team/Team';
 import Event from './components/Event/Event';
 import Footer from './components/Footer/Footer';
 import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
+import HeroIntro from './components/HeroIntro/HeroIntro';
 import Navbar from './components/Navbar/Navbar';
 import { gsap, ScrollTrigger } from './lib/gsap';
 import './App.css';
@@ -56,7 +57,9 @@ function App() {
   }, []);
 
   return (
-    <div className="wrapp">
+    <>
+      <HeroIntro />
+      <div className="wrapp">
       <ParticlesBackground
         quantity={260}
         staticity={24}
@@ -73,7 +76,8 @@ function App() {
         <Team />
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 

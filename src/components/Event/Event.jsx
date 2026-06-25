@@ -15,6 +15,39 @@ const Event = () => {
   const panelRefs  = useRef([]);
   const dotRefs    = useRef([]);
 
+  // thumbnail strip + sliding frame
+  const thumbsRef  = useRef(null);
+  const sliderRef  = useRef(null);
+  const activeRef  = useRef(0);
+
+  // slide the frame continuously between thumbnails and light each one by
+  // how close the frame currently sits over it (pos is a float index 0..N-1)
+  const layoutSlider = (pos = activeRef.current) => {
+    const slider = sliderRef.current;
+    if (!slider || N < 1) return;
+    const f = Math.max(0, Math.min(N - 1, pos));
+    const i0 = Math.floor(f);
+    const i1 = Math.min(i0 + 1, N - 1);
+    const t = f - i0;
+    const a = dotRefs.current[i0];
+    const b = dotRefs.current[i1];
+    if (!a || !b) return;
+
+    const left = a.offsetLeft + (b.offsetLeft - a.offsetLeft) * t;
+    const width = a.offsetWidth + (b.offsetWidth - a.offsetWidth) * t;
+    const height = a.offsetHeight + (b.offsetHeight - a.offsetHeight) * t;
+    slider.style.width = `${width + 8}px`;
+    slider.style.height = `${height + 8}px`;
+    slider.style.transform = `translateX(${left - 4}px)`;
+
+    dotRefs.current.forEach((thumb, i) => {
+      if (!thumb) return;
+      const lit = Math.max(0, 1 - Math.abs(i - f));
+      thumb.style.opacity = `${0.35 + lit * 0.65}`;
+      thumb.style.filter = `grayscale(${(1 - lit) * 0.4})`;
+    });
+  };
+
   const handleDotClick = (i) => {
     if (!stRef.current) return;
     const { start, end } = stRef.current;
@@ -28,6 +61,24 @@ const Event = () => {
   };
 
   useEffect(() => {
+    // once scrolling settles, ease to the nearest event so the frame always
+    // comes to rest squarely over a thumbnail
+    let snapTimer;
+    const snapToNearest = (st) => {
+      if (!st || st.progress <= 0.001 || st.progress >= 0.999) return;
+      const k = Math.round(st.progress * (N - 1));
+      const targetProgress = k / (N - 1);
+      // plant the frame squarely on the nearest thumb right away, so it can
+      // never come to rest straddling two even if the scrub is still easing
+      activeRef.current = k;
+      layoutSlider(k);
+      if (Math.abs(targetProgress - st.progress) < 0.003) return;
+      let target = st.start + targetProgress * (st.end - st.start);
+      if (k === N - 1) target -= 2;
+      if (window.__lenis) window.__lenis.scrollTo(target, { duration: 0.35 });
+      else window.scrollTo({ top: target, behavior: 'smooth' });
+    };
+
     const ctx = gsap.context(() => {
       gsap.set(panelRefs.current[0], { opacity: 1, y: 0 });
       gsap.set(panelRefs.current.slice(1), { opacity: 0, y: 28 });
@@ -44,8 +95,10 @@ const Event = () => {
             ease: 'none',
             scrollTrigger: {
               trigger: stageRef.current,
-              start: 'top top',
-              end: `+=${(N - 1) * window.innerHeight * 0.65}`,
+              // begin rotating as the section scrolls into view, keep going
+              // through the pinned image transitions
+              start: 'top bottom',
+              end: `+=${window.innerHeight * (1 + (N - 1) * 0.65)}`,
               scrub: 0.8,
             },
           }
@@ -84,16 +137,30 @@ const Event = () => {
         scrub: 0.5,
         animation: tl,
         onUpdate: (self) => {
-          const active = Math.round(self.progress * (N - 1));
-          dotRefs.current.forEach((dot, i) => {
-            if (dot) dot.classList.toggle('active', i === active);
-          });
+          // follow the scrubbed card timeline so the frame and the lit
+          // thumbnail land in sync with each event crossfade
+          const prog = self.animation ? self.animation.progress() : self.progress;
+          const f = prog * (N - 1);
+          activeRef.current = f;
+          layoutSlider(f);
+          // re-arm the settle timer; fires once scroll + scrub go quiet
+          clearTimeout(snapTimer);
+          snapTimer = setTimeout(() => snapToNearest(self), 140);
         },
+        onRefresh: () => layoutSlider(activeRef.current),
       });
       window.__eventsST = stRef.current;
+
+      // initial placement of the frame over the first thumbnail
+      layoutSlider(0);
     }, sectionRef);
 
+    const onResize = () => layoutSlider();
+    window.addEventListener('resize', onResize);
+
     return () => {
+      clearTimeout(snapTimer);
+      window.removeEventListener('resize', onResize);
       ctx.revert();
       stRef.current = null;
       window.__eventsST = null;
@@ -146,21 +213,26 @@ const Event = () => {
                 </div>
               ))}
             </div>
-
-            <div className="events__dots">
-              {events.map((_, i) => (
-                <button
-                  key={i}
-                  className={`events__dot${i === 0 ? ' active' : ''}`}
-                  ref={el => { dotRefs.current[i] = el; }}
-                  onClick={() => handleDotClick(i)}
-                  aria-label={`Go to event ${i + 1}`}
-                />
-              ))}
-            </div>
           </div>
 
         </div>
+
+        {/* thumbnail strip — moving frame snaps to the selected event */}
+        <div className="events__thumbs" ref={thumbsRef}>
+          <div className="events__thumb-slider" ref={sliderRef} aria-hidden="true" />
+          {events.map((ev, i) => (
+            <button
+              key={i}
+              className={`events__thumb${i === 0 ? ' active' : ''}`}
+              ref={el => { dotRefs.current[i] = el; }}
+              onClick={() => handleDotClick(i)}
+              aria-label={`Go to event ${i + 1}: ${ev.title}`}
+            >
+              <img src={ev.img} alt={ev.title} />
+            </button>
+          ))}
+        </div>
+
       </div>
     </section>
   );

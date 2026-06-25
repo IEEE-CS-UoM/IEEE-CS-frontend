@@ -7,7 +7,7 @@ const NAV_ITEMS = [
   { label: 'Events', href: '#events' },
   { label: 'Impact', href: '#benefits' },
   { label: 'Team', href: '#team' },
-  { label: 'Footer', href: '#footer' },
+  { label: 'Contact', href: '#footer' },
 ];
 
 const Navbar = () => {
@@ -46,6 +46,20 @@ const Navbar = () => {
     }
   };
 
+  const handleImpactClick = (e) => {
+    e.preventDefault();
+    setOpen(false);
+    const el = document.getElementById('benefits');
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      if (window.__lenis) {
+        window.__lenis.scrollTo(Math.max(0, top));
+      } else {
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      }
+    }
+  };
+
   const handleFooterClick = (event) => {
     event.preventDefault();
     setOpen(false);
@@ -72,8 +86,9 @@ const Navbar = () => {
               href={item.href}
               onClick={
                 item.href === '#footer' ? handleFooterClick
-                : item.href === '#events' ? handleEventsClick
-                : handleItemClick
+                  : item.href === '#events' ? handleEventsClick
+                    : item.href === '#benefits' ? handleImpactClick
+                      : handleItemClick
               }
               className="site-nav__link"
             >

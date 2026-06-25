@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { gsap } from '../../lib/gsap';
+import { gsap, ScrollTrigger } from '../../lib/gsap';
 import { footerLetters } from '../../data/content';
 import './Footer.css';
 
 const QUICK_LINKS = [
-  { label: 'Home',   href: '#home' },
-  { label: 'About',  href: '#about' },
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
   { label: 'Events', href: '#events' },
   { label: 'Impact', href: '#benefits' },
-  { label: 'Team',   href: '#team' },
+  { label: 'Team', href: '#team' },
 ];
 
 const SOCIAL = [
@@ -54,10 +54,9 @@ const Footer = () => {
           ease: 'none',
           scrollTrigger: {
             trigger: footerRef.current,
-            start: 'top 88%',
+            start: 'top 90%',
             end: 'bottom bottom',
-            scrub: 1.1,
-            invalidateOnRefresh: true,
+            scrub: 0.6,
           },
         }
       );
@@ -67,29 +66,31 @@ const Footer = () => {
 
   return (
     <footer className="footer" id="footer" ref={footerRef}>
-      <div className="footer__top content">
-        <div className="footer__brand">
-          <img src="/img/logo.png" alt="IEEE CS UoM" className="footer__logo" />
-          <p className="footer__brand-name">IEEE Computer Society<br />Student Branch Chapter</p>
-          <p className="footer__brand-univ">University of Moratuwa</p>
-        </div>
+      <div className="footer__div">
+        {footerLetters.map((obj, idx) => (
+          <span data-speed={obj.speed} key={idx}>{obj.char}</span>
+        ))}
+      </div>
+
+      <div className="footer__bar content">
+        <a className="footer__brand" href="#home" aria-label="IEEE Computer Society — University of Moratuwa">
+          <img src="/img/logo.png" alt="" className="footer__logo" />
+          <span className="footer__brand-org">IEEE Computer<br />Society</span>
+          <span className="footer__brand-text">
+            <span className="footer__brand-pre">University of</span>
+            <span className="footer__brand-name">Moratuwa</span>
+            <span className="footer__brand-sub">Student Chapter</span>
+          </span>
+        </a>
 
         <nav className="footer__nav" aria-label="Footer navigation">
-          <p className="footer__heading">Quick Links</p>
-          <ul>
-            {QUICK_LINKS.map(link => (
-              <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
-              </li>
-            ))}
-          </ul>
+          {QUICK_LINKS.map(link => (
+            <a key={link.href} href={link.href} className="footer__nav-link">{link.label}</a>
+          ))}
         </nav>
 
-        <div className="footer__connect">
-          <p className="footer__heading">Connect</p>
-          <a href="mailto:Ieeesbuom.2526@gmail.com" className="footer__email">
-            Ieeesbuom.2526@gmail.com
-          </a>
+        <div className="footer__actions">
+          <a href="mailto:Ieeesbuom.2526@gmail.com" className="footer__join">Join Us</a>
           <div className="footer__socials">
             {SOCIAL.map(s => (
               <a
@@ -100,7 +101,7 @@ const Footer = () => {
                 aria-label={s.label}
                 className="footer__social-link"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
                   <path d={s.path} />
                 </svg>
               </a>
@@ -108,15 +109,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
       <div className="footer__copy">
         © 2025 IEEE Computer Society Student Branch Chapter — University of Moratuwa. All rights reserved.
-      </div>
-
-      <div className="footer__div">
-        {footerLetters.map((obj, idx) => (
-          <span data-speed={obj.speed} key={idx}>{obj.char}</span>
-        ))}
       </div>
     </footer>
   );

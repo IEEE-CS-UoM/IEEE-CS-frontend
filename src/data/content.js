@@ -1,24 +1,24 @@
 export const benefitList = [
-  { num: '01 Technical Excellence', speed: '-80', text: 'We conduct hands-on workshops and sessions on modern technologies such as software development, AI, cybersecurity and emerging computing fields.' },
-  { num: '02 Industry Engagement', speed: '-80', text: 'We bridge the gap between academia and industry by connecting students with professionals, mentors and leading organizations.' },
-  { num: '03 Community & Collaboration', speed: '-80', text: 'We cultivate a strong, inclusive tech community where students collaborate, share knowledge and grow together.' },
-  { num: '04 Leadership & Initiative', speed: '-80', text: 'We provide opportunities for students to lead projects, organize events and build essential leadership and teamwork skills.' },
+  { num: '01', icon: 'code', title: 'Technical Excellence', text: 'We conduct hands-on workshops and sessions on modern technologies such as software development, AI, cybersecurity and emerging computing fields.' },
+  { num: '02', icon: 'handshake', title: 'Industry Engagement', text: 'We bridge the gap between academia and industry by connecting students with professionals, mentors and leading organizations.' },
+  { num: '03', icon: 'community', title: 'Community & Collaboration', text: 'We cultivate a strong, inclusive tech community where students collaborate, share knowledge and grow together.' },
+  { num: '04', icon: 'leadership', title: 'Leadership & Initiative', text: 'We provide opportunities for students to lead projects, organize events and build essential leadership and teamwork skills.' },
 ];
 
 
 export const teamMembers = [
-  { role: 'Chairman',            name: 'Randeepa Appuhami',      img: '/img/team/1.webp', bg: '#1a2744' },
-  { role: 'Vice Chairman',       name: 'Garuka Satharasinghe',   img: '/img/team/2.webp', bg: '#1a3528' },
-  { role: 'Secretary',           name: 'Sathsarani Amarasinghe', img: '/img/team/3.webp', bg: '#342015' },
-  { role: 'Assistant Secretary', name: 'Pawani Uthpalawanna',    img: '/img/team/4.webp', bg: '#241535' },
+  { role: 'Secretary',           name: 'Sathsarani Amarasinghe', img: '/img/team/4.webp', bg: '#342015' },
+  { role: 'Chairman',            name: 'Randeepa Appuhami',      img: '/img/team/1.webp', bg: '#1a2744', highlight: true },
+  { role: 'Assistant Secretary', name: 'Pawani Uthpalawanna',    img: '/img/team/3.webp', bg: '#241535' },
   { role: 'Treasurer',           name: 'Dineth Randula',         img: '/img/team/5.webp', bg: '#332d08' },
+  { role: 'Vice Chairman',       name: 'Garuka Satharasinghe',   img: '/img/team/2.webp', bg: '#1a3528' },
   { role: 'Web Master',          name: 'Akindu Himan',           img: '/img/team/6.webp', bg: '#0d2e2e' },
 ];
 
 export const events = [
   {
-    title: 'Ballerina Workshop',
-    desc:  'An immersive hands-on session exploring the Ballerina programming language and its integration capabilities for modern cloud-native development.',
+    title: 'Innovate with Ballerina Competition',
+    desc:  'A competition challenging participants to build real-world integrations with the Ballerina programming language, showcasing its strengths for modern cloud-native development.',
     img:   '/img/events/Ballerina.jpg',
   },
   {

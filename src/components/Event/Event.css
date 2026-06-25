@@ -20,7 +20,7 @@
 
 .events__header {
   flex-shrink: 0;
-  padding: 48px 70px 16px;
+  padding: 20px 70px 5px;
 }
 
 .events__header .section-title {
@@ -37,9 +37,10 @@
 
 
 .events__gallery {
-  width: 55%;
+  width: 48%;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .events__card {
@@ -53,10 +54,11 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 12px;
+  left: 0;
   right: 12px;
   margin: auto;
-  height: 76%;
+  height: 100%;
+  max-height: min(460px, 52vh);
   overflow: hidden;
   border-radius: 16px;
 }
@@ -75,18 +77,18 @@
 }
 
 .events__right {
-  width: 45%;
-  padding: 20px 40px 20px 48px;
+  width: 52%;
+  padding: 20px 24px 20px 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  gap: 26px;
 }
 
 
 .events__panels {
   position: relative;
-  height: 240px;
+  height: 280px;
   flex-shrink: 0;
 }
 
@@ -96,13 +98,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
+  gap: 22px;
   will-change: opacity, transform;
 }
 
 .events__num {
   color: var(--accent-color);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -110,71 +112,118 @@
 
 .events__name {
   color: var(--pr-color);
-  font-size: clamp(28px, 3vw, 46px);
+  font-size: clamp(34px, 3.4vw, 54px);
   font-weight: 800;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.02;
 }
 
 .events__desc {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 400;
-  line-height: 1.75;
-  max-width: 380px;
+  line-height: 1.8;
+  max-width: 520px;
 }
 
-.events__dots {
+/* ---- thumbnail strip + sliding frame ---- */
+.events__thumbs {
+  position: relative;
+  flex-shrink: 0;
   display: flex;
-  gap: 8px;
-  align-items: center;
+  gap: 16px;
+  margin: 0 70px 88px;
+  z-index: 3;
 }
 
-.events__dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  border: none;
-  cursor: pointer;
+.events__thumb {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 84px;
+  margin: 0;
   padding: 0;
-  transition: background 0.3s ease, width 0.3s ease, border-radius 0.3s ease;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.35;
+  filter: grayscale(0.4);
 }
 
-.events__dot.active {
-  background: var(--accent-color);
-  width: 34px;
-  border-radius: 5px;
+.events__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.events__thumb:hover {
+  opacity: 0.7;
+  filter: grayscale(0);
+}
+
+.events__thumb.active {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+.events__thumb-slider {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 0;
+  height: 92px;
+  border: 2px solid var(--accent-color);
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: 4;
+  box-shadow: 0 0 0 4px rgba(253, 162, 5, 0.1);
+  will-change: transform, width, height;
 }
 
 @media (max-width: 1024px) {
+  .events__stage {
+    justify-content: center;
+    gap: 18px;
+  }
+
   .events__header {
-    padding: 40px 24px 36px;
+    padding: 0 24px;
   }
 
   .events__body {
+    flex: 0 0 auto;
     flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    padding: 0 24px;
   }
 
   .events__gallery {
     width: 100%;
-    flex: 1;
+    flex: 0 0 auto;
+    height: 240px;
   }
 
   .events__card-frame {
-    top: 10px;
-    bottom: 10px;
-    left: 4px;
-    right: 4px;
-    margin: 0;
-    height: 88%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: min(78%, 300px);
+    height: auto;
+    max-height: 100%;
+    aspect-ratio: 4 / 3;
   }
 
   .events__right {
     width: 100%;
-    padding: 16px 24px 24px;
+    padding: 0 24px;
     flex-shrink: 0;
-    min-height: 160px;
+    min-height: auto;
     align-items: center;
   }
 
@@ -199,15 +248,22 @@
 
   .events__panels {
     width: 100%;
+    height: 170px;
   }
 
-  .events__dots {
-    order: -1;
-    justify-content: center;
-    padding-bottom: 8px;
+  .events__thumbs {
+    gap: 8px;
+    margin: 0 20px 16px;
   }
 
-  .events__panels {
-    order: 0;
+  .events__thumb {
+    height: 56px;
+    border-radius: 7px;
+  }
+
+  .events__thumb-slider {
+    top: -4px;
+    height: 64px;
+    border-radius: 10px;
   }
 }

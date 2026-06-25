@@ -3,9 +3,8 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  padding-top: var(--nav-height);
-  padding-bottom: 60px;
-  scroll-margin-top: 0;
+  padding-top: var(--sec-pt);
+  padding-bottom: var(--sec-pb);
 }
 
 .team__title-wrap {
@@ -23,7 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 56px;
+  margin-top: min(56px, 4vh);
 }
 
 .team__grid {
@@ -31,8 +30,8 @@
   flex-direction: row;
   gap: 18px;
   width: 100%;
-  height: 520px;
-  margin-bottom: 60px;
+  height: min(520px, 52vh);
+  margin-bottom: min(60px, 4vh);
 }
 
 .team__row {
@@ -46,6 +45,23 @@
   position: relative;
   cursor: pointer;
   min-width: 0;
+}
+
+/* Chairman — subtly highlighted from the rest, pulled to the left corner on desktop */
+.team__card--chair {
+  order: -1;
+  box-shadow: 0 0 24px rgba(255, 196, 84, 0.35),
+              0 0 60px rgba(255, 176, 32, 0.22);
+}
+
+.team__card--chair::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to top, rgba(255, 196, 84, 0.14) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .team__card-img {
@@ -76,6 +92,7 @@
   padding: 60px 16px 28px;
   background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
   text-align: center;
+  z-index: 2;
 }
 
 .team__card-name {
@@ -107,10 +124,6 @@
 }
 
 @media (max-width: 768px) {
-  .team {
-    padding-bottom: 40px;
-  }
-
   .team__title-wrap {
     padding: 20px 0 16px;
   }
@@ -140,6 +153,11 @@
     height: 190px;
     border-radius: 22px;
     min-width: 0;
+  }
+
+  /* Keep Chairman in the middle of the first row on mobile */
+  .team__card--chair {
+    order: 0;
   }
 
   .team__card-info {

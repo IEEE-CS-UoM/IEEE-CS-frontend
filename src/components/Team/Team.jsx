@@ -52,7 +52,7 @@ const Team = () => {
     if (window.innerWidth <= 768) return;
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
-      gsap.to(card, { flexGrow: i === idx ? 2.2 : 0.5, duration: 0.5, ease: 'power2.out' });
+      gsap.to(card, { flexGrow: i === idx ? 1.8 : 0.65, duration: 0.5, ease: 'power2.out' });
     });
   };
 
@@ -109,7 +109,7 @@ const Team = () => {
                 return (
                   <div
                     key={i}
-                    className="team__card"
+                    className={`team__card${member.highlight ? ' team__card--chair' : ''}`}
                     ref={el => { cardsRef.current[i] = el; }}
                     style={{ backgroundColor: member.bg }}
                     onMouseEnter={() => handleHover(i)}

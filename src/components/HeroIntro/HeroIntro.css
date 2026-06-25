@@ -1,0 +1,28 @@
+.hero-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* solid gate matching the site bg so there's no flash before particles form */
+.hero-intro__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 50%, rgba(253, 162, 5, 0.08), transparent 60%),
+    var(--second-color);
+  opacity: 1;
+  transition: opacity 1.4s ease;
+}
+
+.hero-intro__backdrop--out {
+  opacity: 0;
+}
+
+.hero-intro__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

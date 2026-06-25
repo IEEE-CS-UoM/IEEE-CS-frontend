@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from '../../lib/gsap';
+import { onIntroRelease } from '../../lib/intro';
 import './Hero.css';
 
 const Hero = () => {
@@ -10,10 +11,18 @@ const Hero = () => {
       window.Splitting();
     }
 
+    const introTlRef = { current: null };
+
     const ctx = gsap.context(() => {
-      const gTl = gsap.timeline();
-      gTl.from(".title .char", { duration: 1, opacity: 0, yPercent: 130, stagger: 0.06, ease: "back.out" });
-      gTl.from(".header__marq", { duration: 2, opacity: 0, yPercent: 100, ease: "expo.out" }, "-=1.5");
+      // Hidden until the particle intro releases, then revealed in sync with
+      // the dispersing word.
+      gsap.set('.title .char', { opacity: 0, yPercent: 130 });
+      gsap.set('.header__marq', { opacity: 0, yPercent: 100 });
+
+      const gTl = gsap.timeline({ paused: true });
+      gTl.to(".title .char", { duration: 1, opacity: 1, yPercent: 0, stagger: 0.06, ease: "back.out" });
+      gTl.to(".header__marq", { duration: 2, opacity: 1, yPercent: 0, ease: "expo.out" }, "-=1.5");
+      introTlRef.current = gTl;
 
       gsap.to('.title_paralax', {
         scrollTrigger: { trigger: headerRef.current, start: 'top top', scrub: 1.1 },
@@ -33,13 +42,18 @@ const Hero = () => {
       });
     }, headerRef);
 
-    return () => ctx.revert();
+    const off = onIntroRelease(() => introTlRef.current?.play());
+
+    return () => {
+      off();
+      ctx.revert();
+    };
   }, []);
 
   return (
     <header className="header" id="home" ref={headerRef}>
       <h1 className="title" data-splitting>
-        <span className="title_paralax">IEEE CS&nbsp;</span>
+        <span className="title_paralax">IEEE Computer Society</span>
         <span className="stroke">UoM Chapter</span>
       </h1>
       <div className="header__marq">

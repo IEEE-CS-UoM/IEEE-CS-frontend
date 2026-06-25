@@ -54,26 +54,32 @@
 .title {
 	position: relative;
 	margin: 0;
-	font-size: 110px;
+	/* vw term fills the width like the intro word; capped on large screens */
+	font-size: clamp(26px, 6.7vw, 84px);
+	line-height: 0.92;
 	text-align: center;
 	color: #fff;
 	text-transform: uppercase;
 	mix-blend-mode: difference;
 	z-index: 2;
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
+	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
+	gap: 0.5em;
 	width: 100%;
 }
 
 .title_paralax {
-	display: inline-block;
+	display: block;
+	white-space: nowrap;
 	will-change: transform;
 }
 
 .title .stroke {
-	display: inline-block;
+	display: block;
+	white-space: nowrap;
 	color: transparent;
 	-webkit-text-stroke: 1px var(--accent-color);
 }
@@ -84,7 +90,8 @@
 	}
 
 	.title {
-		font-size: 44px;
+		/* keep the long line on one row down to small phones */
+		font-size: clamp(20px, 6.4vw, 56px);
 	}
 
 	.header__marq-wrapp {
