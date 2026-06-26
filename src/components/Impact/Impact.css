@@ -141,49 +141,49 @@
 
 	.benefits__lead {
 		font-size: 11px;
-		margin: 12px auto 6px;
+		margin: 12px auto 0;
 		line-height: 1.5;
 	}
 
 	.benefits__list {
 		grid-template-columns: 1fr;
-		gap: 10px;
-		margin-top: 14px;
-		max-width: 460px;
+		gap: 8px;
+		margin-top: 6px;
+		max-width: 420px;
 	}
 
 	.benefits__card {
-		gap: 12px;
-		padding: 12px 14px;
-		border-radius: 10px;
+		gap: 10px;
+		padding: 9px 11px;
+		border-radius: 8px;
 	}
 
 	.benefits__icon {
-		width: 40px;
-		height: 40px;
+		width: 32px;
+		height: 32px;
 	}
 
 	.benefits__icon svg {
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 	}
 
 	.benefits__body {
-		padding-left: 12px;
+		padding-left: 10px;
 	}
 
 	.benefits__num {
-		font-size: 13px;
-		margin-bottom: 6px;
+		font-size: 11px;
+		margin-bottom: 4px;
 	}
 
 	.benefits__title {
-		font-size: 14px;
-		margin-bottom: 7px;
+		font-size: 12px;
+		margin-bottom: 5px;
 	}
 
 	.benefits__p {
-		font-size: 10px;
-		line-height: 1.5;
+		font-size: 9px;
+		line-height: 1.45;
 	}
 }

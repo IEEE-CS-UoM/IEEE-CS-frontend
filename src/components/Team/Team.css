@@ -64,6 +64,10 @@
   z-index: 1;
 }
 
+.team__card--vice {
+  order: -1;
+}
+
 .team__card-img {
   position: absolute;
   inset: 0;
@@ -155,8 +159,11 @@
     min-width: 0;
   }
 
-  /* Keep Chairman in the middle of the first row on mobile */
   .team__card--chair {
+    order: 0;
+  }
+
+  .team__card--vice {
     order: 0;
   }
 

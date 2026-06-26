@@ -11,7 +11,7 @@ export const teamMembers = [
   { role: 'Chairman',            name: 'Randeepa Appuhami',      img: '/img/team/1.webp', bg: '#1a2744', highlight: true },
   { role: 'Assistant Secretary', name: 'Pawani Uthpalawanna',    img: '/img/team/3.webp', bg: '#241535' },
   { role: 'Treasurer',           name: 'Dineth Randula',         img: '/img/team/5.webp', bg: '#332d08' },
-  { role: 'Vice Chairman',       name: 'Garuka Satharasinghe',   img: '/img/team/2.webp', bg: '#1a3528' },
+  { role: 'Vice Chairman',       name: 'Garuka Satharasinghe',   img: '/img/team/2.webp', bg: '#1a3528', viceChair: true },
   { role: 'Web Master',          name: 'Akindu Himan',           img: '/img/team/6.webp', bg: '#0d2e2e' },
 ];
 

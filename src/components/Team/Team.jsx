@@ -109,7 +109,7 @@ const Team = () => {
                 return (
                   <div
                     key={i}
-                    className={`team__card${member.highlight ? ' team__card--chair' : ''}`}
+                    className={`team__card${member.highlight ? ' team__card--chair' : ''}${member.viceChair ? ' team__card--vice' : ''}`}
                     ref={el => { cardsRef.current[i] = el; }}
                     style={{ backgroundColor: member.bg }}
                     onMouseEnter={() => handleHover(i)}

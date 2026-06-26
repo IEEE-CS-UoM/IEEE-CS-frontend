@@ -43,6 +43,12 @@
 	font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
+html {
+	overflow-x: hidden;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
 body {
 	background: var(--second-color);
 	overflow-x: hidden;
