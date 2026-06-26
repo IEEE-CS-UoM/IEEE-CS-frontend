@@ -61,15 +61,11 @@ const Event = () => {
   };
 
   useEffect(() => {
-    // once scrolling settles, ease to the nearest event so the frame always
-    // comes to rest squarely over a thumbnail
     let snapTimer;
     const snapToNearest = (st) => {
       if (!st || st.progress <= 0.001 || st.progress >= 0.999) return;
       const k = Math.round(st.progress * (N - 1));
       const targetProgress = k / (N - 1);
-      // plant the frame squarely on the nearest thumb right away, so it can
-      // never come to rest straddling two even if the scrub is still easing
       activeRef.current = k;
       layoutSlider(k);
       if (Math.abs(targetProgress - st.progress) < 0.003) return;
@@ -95,8 +91,6 @@ const Event = () => {
             ease: 'none',
             scrollTrigger: {
               trigger: stageRef.current,
-              // begin rotating as the section scrolls into view, keep going
-              // through the pinned image transitions
               start: 'top bottom',
               end: `+=${window.innerHeight * (1 + (N - 1) * 0.65)}`,
               scrub: 0.8,
@@ -137,10 +131,7 @@ const Event = () => {
         scrub: 0.5,
         animation: tl,
         onUpdate: (self) => {
-          // follow the scrubbed card timeline so the frame and the lit
-          // thumbnail land in sync with each event crossfade
-          const prog = self.animation ? self.animation.progress() : self.progress;
-          const f = prog * (N - 1);
+          const f = self.progress * (N - 1);
           activeRef.current = f;
           layoutSlider(f);
           // re-arm the settle timer; fires once scroll + scrub go quiet

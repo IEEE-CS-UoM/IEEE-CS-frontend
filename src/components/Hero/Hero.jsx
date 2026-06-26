@@ -7,21 +7,15 @@ const Hero = () => {
   const headerRef = useRef(null);
 
   useEffect(() => {
-    if (window.Splitting) {
-      window.Splitting();
-    }
-
     const introTlRef = { current: null };
 
     const ctx = gsap.context(() => {
-      // Hidden until the particle intro releases, then revealed in sync with
-      // the dispersing word.
-      gsap.set('.title .char', { opacity: 0, yPercent: 130 });
+      // The title itself is revealed by the particle intro forming its shape;
+      // only the marquee subtext still gets a post-release reveal.
       gsap.set('.header__marq', { opacity: 0, yPercent: 100 });
 
       const gTl = gsap.timeline({ paused: true });
-      gTl.to(".title .char", { duration: 1, opacity: 1, yPercent: 0, stagger: 0.06, ease: "back.out" });
-      gTl.to(".header__marq", { duration: 2, opacity: 1, yPercent: 0, ease: "expo.out" }, "-=1.5");
+      gTl.to(".header__marq", { duration: 2, opacity: 1, yPercent: 0, ease: "expo.out" });
       introTlRef.current = gTl;
 
       gsap.to('.title_paralax', {
@@ -52,7 +46,7 @@ const Hero = () => {
 
   return (
     <header className="header" id="home" ref={headerRef}>
-      <h1 className="title" data-splitting>
+      <h1 className="title">
         <span className="title_paralax">IEEE Computer Society</span>
         <span className="stroke">UoM Chapter</span>
       </h1>

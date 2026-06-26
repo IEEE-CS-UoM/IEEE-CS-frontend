@@ -135,6 +135,10 @@
 }
 
 @media (max-width: 1024px) {
+	.benefits {
+		padding-bottom: calc(var(--sec-pb) + 40px);
+	}
+
 	.benefits__lead {
 		font-size: 11px;
 		margin: 12px auto 6px;
