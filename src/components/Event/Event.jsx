@@ -82,23 +82,6 @@ const Event = () => {
       gsap.set(cardRefs.current.slice(1), { yPercent: 100 });
       gsap.set(cardRefs.current, { scale: 1 });
 
-      const square = sectionRef.current.querySelector('.section-title__square');
-      if (square) {
-        gsap.fromTo(square,
-          { rotation: 0 },
-          {
-            rotation: 720,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: stageRef.current,
-              start: 'top bottom',
-              end: `+=${window.innerHeight * (1 + (N - 1) * 0.65)}`,
-              scrub: 0.8,
-            },
-          }
-        );
-      }
-
       const tl = gsap.timeline({ paused: true });
 
       for (let i = 0; i < N - 1; i++) {
@@ -164,7 +147,7 @@ const Event = () => {
 
 
         <div className="events__header">
-          <SectionTitle normalText="our" strokeText=" events" noAnimation />
+          <SectionTitle normalText="our" strokeText=" events" />
         </div>
 
         <div className="events__body">
