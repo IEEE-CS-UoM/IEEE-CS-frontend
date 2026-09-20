@@ -46,6 +46,11 @@ const Event = () => {
       thumb.style.opacity = `${0.35 + lit * 0.65}`;
       thumb.style.filter = `grayscale(${(1 - lit) * 0.4})`;
     });
+
+    const activePanel = Math.round(f);
+    panelRefs.current.forEach((panel, i) => {
+      if (panel) panel.style.pointerEvents = i === activePanel ? 'auto' : 'none';
+    });
   };
 
   const handleDotClick = (i) => {
@@ -78,6 +83,9 @@ const Event = () => {
     const ctx = gsap.context(() => {
       gsap.set(panelRefs.current[0], { opacity: 1, y: 0 });
       gsap.set(panelRefs.current.slice(1), { opacity: 0, y: 28 });
+      panelRefs.current.forEach((panel, i) => {
+        if (panel) panel.style.pointerEvents = i === 0 ? 'auto' : 'none';
+      });
       gsap.set(cardRefs.current[0], { yPercent: 0 });
       gsap.set(cardRefs.current.slice(1), { yPercent: 100 });
       gsap.set(cardRefs.current, { scale: 1 });
@@ -184,6 +192,11 @@ const Event = () => {
                   <span className="events__num">{String(i + 1).padStart(2, '0')}</span>
                   <h3 className="events__name">{ev.title}</h3>
                   <p className="events__desc">{ev.desc}</p>
+                  {ev.detail && (
+                    <a className="events__more" href={`/${ev.slug}`}>
+                      Find out more
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

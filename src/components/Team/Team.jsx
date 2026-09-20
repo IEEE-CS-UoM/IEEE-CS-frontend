@@ -107,13 +107,17 @@ const Team = () => {
               {teamMembers.slice(rowIdx * 3, rowIdx * 3 + 3).map((member, colIdx) => {
                 const i = rowIdx * 3 + colIdx;
                 return (
-                  <div
+                  <a
                     key={i}
                     className={`team__card${member.highlight ? ' team__card--chair' : ''}${member.viceChair ? ' team__card--vice' : ''}`}
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
                     ref={el => { cardsRef.current[i] = el; }}
                     style={{ backgroundColor: member.bg }}
                     onMouseEnter={() => handleHover(i)}
                     onPointerUp={(e) => { if (e.pointerType === 'touch') handleTap(i); }}
+                    aria-label={`Open ${member.name}'s LinkedIn profile`}
                   >
                     <div className="team__card-img">
                       <img src={member.img} alt={member.name} loading="lazy" />
@@ -122,7 +126,7 @@ const Team = () => {
                       <p className="team__card-name">{member.name}</p>
                       <p className="team__card-role">{member.role}</p>
                     </div>
-                  </div>
+                  </a>
                 );
               })}
             </div>

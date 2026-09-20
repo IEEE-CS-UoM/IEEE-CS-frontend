@@ -5,15 +5,22 @@ import About from './components/About/About';
 import Impact from './components/Impact/Impact';
 import Team from './components/Team/Team';
 import Event from './components/Event/Event';
+import EventDetail, { getEventByPath } from './components/EventDetail/EventDetail';
 import Footer from './components/Footer/Footer';
 import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
 import HeroIntro from './components/HeroIntro/HeroIntro';
 import Navbar from './components/Navbar/Navbar';
 import { gsap, ScrollTrigger } from './lib/gsap';
+import { releaseIntro } from './lib/intro';
 import './App.css';
 
 function App() {
+  const detailEvent = getEventByPath(window.location.pathname);
+  const shouldSkipIntro = !detailEvent && window.location.hash === '#events';
+
   useEffect(() => {
+    if (shouldSkipIntro) releaseIntro();
+
     const lenis = new Lenis({
       duration: 0.75,
       smoothWheel: true,
@@ -45,6 +52,13 @@ function App() {
 
     const t = setTimeout(refreshSoon, 800);
 
+    if (shouldSkipIntro) {
+      requestAnimationFrame(() => {
+        const eventsSection = document.getElementById('events');
+        if (eventsSection) lenis.scrollTo(eventsSection, { immediate: true, offset: -20 });
+      });
+    }
+
     return () => {
       clearTimeout(t);
       window.removeEventListener('pageshow', refreshSoon);
@@ -54,11 +68,11 @@ function App() {
       lenis.destroy();
       window.__lenis = null;
     };
-  }, []);
+  }, [shouldSkipIntro]);
 
   return (
     <>
-      <HeroIntro />
+      {!detailEvent && !shouldSkipIntro && <HeroIntro />}
       <div className="wrapp">
       <ParticlesBackground
         quantity={260}
@@ -68,13 +82,19 @@ function App() {
         colorPalette={['#ff7a1a', '#fda205', '#ffd27a', '#fff0c9']}
       />
       <Navbar />
-      <Hero />
-      <main className="main">
-        <About />
-        <Event />
-        <Impact />
-        <Team />
-      </main>
+      {detailEvent ? (
+        <EventDetail event={detailEvent} />
+      ) : (
+        <>
+          <Hero />
+          <main className="main">
+            <About />
+            <Event />
+            <Impact />
+            <Team />
+          </main>
+        </>
+      )}
       <Footer />
       </div>
     </>
